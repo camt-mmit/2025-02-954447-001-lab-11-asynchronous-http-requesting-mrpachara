@@ -8,7 +8,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "week-10": {
+    "week-11": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "week-10:build:production"
+              "buildTarget": "week-11:build:production"
             },
             "development": {
-              "buildTarget": "week-10:build:development"
+              "buildTarget": "week-11:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,6 +78,9 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
