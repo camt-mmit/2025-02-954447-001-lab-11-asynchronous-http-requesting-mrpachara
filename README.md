@@ -57,3 +57,7 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Credits
+
+- **Star Wars Logo:** Modified version of the [Star Wars logo](https://en.wikipedia.org/wiki/File:Star_Wars_Logo.svg) hosted on Wikimedia Commons. This asset is used for non-commercial educational purposes.

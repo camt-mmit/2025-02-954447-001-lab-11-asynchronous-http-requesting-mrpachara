@@ -7,6 +7,7 @@
     }
   }
 
+  box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
   row-gap: var(--_row-gap);
@@ -54,6 +55,7 @@
       @layer {
         & {
           text-align: justify;
+          white-space: pre-wrap;
         }
       }
     }

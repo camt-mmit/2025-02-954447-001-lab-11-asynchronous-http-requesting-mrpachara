@@ -1,12 +1,26 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { FilmView } from '../../components/film-view/film-view';
+import { filmResource } from '../../helpers';
+import { ModuleActivatedRoute } from '../../tokens';
 
 @Component({
   selector: 'app-film-view-page',
-  imports: [],
+  imports: [FilmView],
   templateUrl: './film-view-page.html',
   styleUrl: './film-view-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilmViewPage {
+  readonly id = input.required<string>();
 
+  protected moduleRoute = inject(ModuleActivatedRoute);
+
+  protected readonly resource = filmResource(this.id).asReadonly();
+
+  private readonly location = inject(Location);
+
+  protected goBack(): void {
+    this.location.back();
+  }
 }
