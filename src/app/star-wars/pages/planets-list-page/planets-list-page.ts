@@ -10,7 +10,7 @@ import {
 import { FormField, disabled, form, submit } from '@angular/forms/signals';
 import { Router, RouterLink } from '@angular/router';
 import { PlanetsList } from '../../components/planets-list/planets-list';
-import { planetsListResource, purnEmptyProperties } from '../../helpers';
+import { ResultsListParams, planetsListResource, purnEmptyProperties } from '../../helpers';
 
 @Component({
   selector: 'app-planets-list-page',
@@ -23,13 +23,10 @@ export class PlanetsListPage {
   readonly search = input<string>();
   readonly page = input<string>();
 
-  protected readonly params = computed(
-    () =>
-      ({
-        search: this.search() ?? '',
-        page: this.page() ?? '',
-      }) as const,
-  );
+  private readonly params = computed<Required<ResultsListParams>>(() => ({
+    search: this.search() ?? '',
+    page: this.page() ?? '',
+  }));
 
   protected readonly resource = planetsListResource(() =>
     purnEmptyProperties(this.params()),

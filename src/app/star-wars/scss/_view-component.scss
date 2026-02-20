@@ -1,6 +1,6 @@
-@use 'common';
-@use 'data';
-@use 'status';
+@use './common';
+@use './data';
+@use './status';
 
 :host {
   @include common.layout-block();

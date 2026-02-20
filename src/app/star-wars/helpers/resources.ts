@@ -11,7 +11,7 @@ export async function fetchResource<T>(
   url: string | null,
   abortSignal: AbortSignal | null = null,
 ): Promise<T | null> {
-  if (url == null) {
+  if (url === null) {
     return null;
   }
 
@@ -27,11 +27,15 @@ export interface ResultsListParams {
   readonly page?: string;
 }
 
-export function peopleListResource(params: () => ResultsListParams) {
-  return httpResource<ResultsList<Person>>(() => ({
-    url: `${entryPointURL}/people`,
-    params: { ...params() },
-  }));
+export function peopleListResource(params: () => ResultsListParams | undefined) {
+  return httpResource<ResultsList<Person>>(() =>
+    params()
+      ? {
+          url: `${entryPointURL}/people`,
+          params: { ...params()! },
+        }
+      : undefined,
+  );
 }
 
 export function personResource(id: () => string | undefined) {
@@ -45,36 +49,44 @@ export function personResource(id: () => string | undefined) {
   );
 }
 
-export function filmsListResource(params: () => ResultsListParams) {
-  return httpResource<ResultsList<Film>>(() => ({
-    url: `${entryPointURL}/films`,
-    params: { ...params() },
-  }));
+export function filmsListResource(params: () => ResultsListParams | undefined) {
+  return httpResource<ResultsList<Film>>(() =>
+    params()
+      ? {
+          url: `${entryPointURL}/films`,
+          params: { ...params()! },
+        }
+      : undefined,
+  );
 }
 
 export function filmResource(id: () => string | undefined) {
   return httpResource<Film>(() =>
     id()
       ? {
-          url: `${entryPointURL}/films/${id()}`,
+          url: `${entryPointURL}/films/${id()!}`,
           cache: 'force-cache',
         }
       : undefined,
   );
 }
 
-export function planetsListResource(params: () => ResultsListParams) {
-  return httpResource<ResultsList<Planet>>(() => ({
-    url: `${entryPointURL}/planets`,
-    params: { ...params() },
-  }));
+export function planetsListResource(params: () => ResultsListParams | undefined) {
+  return httpResource<ResultsList<Planet>>(() =>
+    params()
+      ? {
+          url: `${entryPointURL}/planets`,
+          params: { ...params()! },
+        }
+      : undefined,
+  );
 }
 
 export function planetResource(id: () => string | undefined) {
   return httpResource<Planet>(() =>
     id()
       ? {
-          url: `${entryPointURL}/planets/${id()}`,
+          url: `${entryPointURL}/planets/${id()!}`,
           cache: 'force-cache',
         }
       : undefined,

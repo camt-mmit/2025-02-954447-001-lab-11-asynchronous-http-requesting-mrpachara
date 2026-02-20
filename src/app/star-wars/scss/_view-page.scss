@@ -1,6 +1,6 @@
-@use 'page';
-@use 'message';
-@use 'status';
+@use './page';
+@use './message';
+@use './status';
 
 :host {
   @include page.set-host-header();

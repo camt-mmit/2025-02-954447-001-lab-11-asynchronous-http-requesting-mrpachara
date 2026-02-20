@@ -10,7 +10,7 @@ import {
 import { FormField, disabled, form, submit } from '@angular/forms/signals';
 import { Router, RouterLink } from '@angular/router';
 import { FilmsList } from '../../components/films-list/films-list';
-import { filmsListResource, purnEmptyProperties } from '../../helpers';
+import { ResultsListParams, filmsListResource, purnEmptyProperties } from '../../helpers';
 
 @Component({
   selector: 'app-films-list-page',
@@ -23,13 +23,10 @@ export class FilmsListPage {
   readonly search = input<string>();
   readonly page = input<string>();
 
-  protected readonly params = computed(
-    () =>
-      ({
-        search: this.search() ?? '',
-        page: this.page() ?? '',
-      }) as const,
-  );
+  private readonly params = computed<Required<ResultsListParams>>(() => ({
+    search: this.search() ?? '',
+    page: this.page() ?? '',
+  }));
 
   protected readonly resource = filmsListResource(() =>
     purnEmptyProperties(this.params()),
