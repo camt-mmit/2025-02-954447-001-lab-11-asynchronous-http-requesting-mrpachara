@@ -3,6 +3,12 @@
 :host {
   @include common.layout-block();
 
+  @layer {
+    & {
+      --_fullscreen-button-on-hover-color: rgb(from var(--app-surface-container-color) r g b / 25%);
+    }
+  }
+
   --__rotate: 70deg;
   --__speed: 20px;
   --__base-font-size: calc((var(--_width) / 30) * 2);
@@ -14,7 +20,14 @@
 
   background-color: var(--app-surface-color);
 
+  position: relative;
   overflow: hidden;
+
+  &:fullscreen {
+    ._fullscreen-button {
+      display: none;
+    }
+  }
 }
 
 ._activation-container {
@@ -197,5 +210,27 @@
 
   to {
     transform: translateY(calc(-1 * var(--__justed-crawl-height)));
+  }
+}
+
+._fullscreen-button {
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+
+  border: none;
+  border-radius: 4px;
+
+  padding: 4px 8px;
+
+  right: 8px;
+  bottom: 8px;
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--_fullscreen-button-on-hover-color);
   }
 }

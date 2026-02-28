@@ -12,22 +12,29 @@
 
   @include common.layout-block();
 
-  height: 100%;
+  &:not(._full-page) {
+    @include common.layout-block();
 
-  padding-bottom: var(--_gap);
-}
+    display: flex;
+    flex-direction: column;
 
-.-cmp-main-content {
-  @include common.layout-block();
+    width: min(var(--_max-width), 100%);
 
-  display: flex;
-  flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 
-  height: 100%;
-  width: min(var(--_max-width), 100%);
+    height: 100%;
 
-  margin-left: auto;
-  margin-right: auto;
+    padding-bottom: var(--_gap);
+  }
+
+  &._full-page {
+    display: flow-root;
+
+    & > :is(header, footer) {
+      display: none;
+    }
+  }
 }
 
 header {

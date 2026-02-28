@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { FilmView } from '../../components/film-view/film-view';
 import { filmResource } from '../../helpers';
-import { ModuleActivatedRoute } from '../../tokens';
+import { MOUDLE_ROUTE } from '../../tokens';
 
 @Component({
   selector: 'app-film-view-page',
@@ -14,7 +14,7 @@ import { ModuleActivatedRoute } from '../../tokens';
 export class FilmViewPage {
   readonly id = input.required<string>();
 
-  protected moduleRoute = inject(ModuleActivatedRoute);
+  protected moduleRoute = inject(MOUDLE_ROUTE);
 
   protected readonly resource = filmResource(this.id).asReadonly();
 

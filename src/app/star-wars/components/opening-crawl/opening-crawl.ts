@@ -133,4 +133,10 @@ export class OpeningCrawl {
       this.openingCrawlSong.stop();
     }
   }
+
+  private readonly hostElement = inject<ElementRef<Element>>(ElementRef).nativeElement;
+
+  protected fullscreen(): void {
+    this.hostElement.requestFullscreen();
+  }
 }
